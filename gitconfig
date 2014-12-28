@@ -1,0 +1,15 @@
+[user]
+	name = James O'Gorman
+	email = james@netinertia.co.uk
+[color]
+	ui = true
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	sts = status -s
+[core]
+	editor = vim
