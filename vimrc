@@ -16,6 +16,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 " Language features
+Plugin 'cespare/vim-toml'
 Plugin 'fatih/vim-go'
 Plugin 'davidhalter/jedi-vim'		" Autocompletion
 Plugin 'klen/python-mode'
@@ -56,6 +57,8 @@ map Q <Nop>
 map q: :q
 
 nnoremap <leader><space> :nohlsearch<CR>
+
+nnoremap <C-t> :tabnew<CR>
 
 " Fugitive (git) shortcuts
 nnoremap <leader>gs :Gstatus<CR>
@@ -102,3 +105,6 @@ let g:airline_powerline_fonts = 0
 let g:airline_symbols.branch = '⎇'
 
 let g:go_fmt_command = "goimports"
+
+let g:pymode_folding = 0
+let g:pymode_rope_lookup_project = 0
