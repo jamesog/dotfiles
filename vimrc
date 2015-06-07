@@ -58,9 +58,9 @@ map q: :q
 nnoremap <leader><space> :nohlsearch<CR>
 
 " Fugitive (git) shortcuts
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gc :Gcommit<CR>
-nmap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gb :Gblame<CR>
 
 " Use silent! here in case the colorscheme doesn't exist
 " (e.g. before Vundle plugins are installed)
@@ -82,6 +82,12 @@ if has("autocmd")
 		au BufNewFile,BufRead *.py setlocal sw=4 sts=4 et
 		au FileType python setlocal sw=4 sts=4 et
 	augroup END
+	augroup filetype_go
+		au FileType go nmap <leader>r <Plug>(go-run)
+		au FileType go nmap <leader>b <Plug>(go-build)
+		au FileType go nmap <leader>t <Plug>(go-test)
+		au FileType go nmap <leader>c <Plug>(go-coverage)
+	augroup END
 endif
 
 if !exists('g:airline_symbols')
@@ -94,3 +100,5 @@ let g:airline_right_sep = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 0
 let g:airline_symbols.branch = '⎇'
+
+let g:go_fmt_command = "goimports"
