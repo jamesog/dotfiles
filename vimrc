@@ -52,6 +52,9 @@ let mapleader=","
 " Who uses ex mode?
 map Q <Nop>
 
+" (rageguy)
+map q: :q
+
 nnoremap <leader><space> :nohlsearch<CR>
 
 " Fugitive (git) shortcuts
