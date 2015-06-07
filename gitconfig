@@ -13,3 +13,5 @@
 	sts = status -s
 [core]
 	editor = vim
+[push]
+	default = simple
