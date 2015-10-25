@@ -4,7 +4,7 @@ filetype off						" Required at this stage by Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 " Vim enhancements
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
