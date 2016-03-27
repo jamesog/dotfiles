@@ -1,7 +1,12 @@
 #!/bin/sh
 
 DOTFILES="
+bash_profile
+bashrc
+git-prompt.sh
 gitconfig
+tmux
+tmux.conf
 vimrc
 vim
 "
@@ -26,5 +31,7 @@ do
 	fi
 done
 
+# Pull git submodules
+(cd $dotdir; git submodule update --init --recursive)
 # Install Vundle plugins
 vim +PluginInstall +qall
