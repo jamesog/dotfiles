@@ -42,6 +42,7 @@ set tabstop=4						" Display tabs as 4 columns wide
 set shiftwidth=4
 set showmatch						" Show matching brackets
 set wildmode=list:longest,full
+set nofoldenable
 
 " I rarely use a terminal with fewer than 256 colours
 set t_Co=256
@@ -64,6 +65,9 @@ nnoremap <C-t> :tabnew<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gb :Gblame<CR>
+
+" toggle line numbering
+nmap <C-N><C-N> :set invnumber<CR>
 
 " Use silent! here in case the colorscheme doesn't exist
 " (e.g. before Vundle plugins are installed)
@@ -107,4 +111,6 @@ let g:airline_symbols.branch = '⎇'
 let g:go_fmt_command = "goimports"
 
 let g:pymode_folding = 0
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+let g:pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
