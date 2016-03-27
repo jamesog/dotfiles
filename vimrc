@@ -42,7 +42,11 @@ set smartcase						" but be case sensitive when needed
 set number							" Line numbers
 set tabstop=4						" Display tabs as 4 columns wide
 set shiftwidth=4
+
+set cursorline						" Highlight current line
+
 set showmatch						" Show matching brackets
+set wildmenu
 set wildmode=list:longest,full
 set nofoldenable
 
