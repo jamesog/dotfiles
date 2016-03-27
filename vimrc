@@ -18,7 +18,9 @@ Plugin 'tpope/vim-unimpaired'
 " Language features
 Plugin 'cespare/vim-toml'
 Plugin 'fatih/vim-go'
-Plugin 'davidhalter/jedi-vim'		" Autocompletion
+"if has("python")
+"Plugin 'davidhalter/jedi-vim'		" Autocompletion, requires python
+"endif
 Plugin 'klen/python-mode'
 Plugin 'saltstack/salt-vim'
 " Colourscheme
