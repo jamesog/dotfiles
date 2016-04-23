@@ -55,6 +55,9 @@ set t_Co=256
 
 set pastetoggle=<F2>				" Because :set [no]paste is tedious
 
+set splitright						" Open vsplits on the right, not the left
+set splitbelow						" Similarly for splits, bottom, not top
+
 let mapleader=","
 
 " Who uses ex mode?
