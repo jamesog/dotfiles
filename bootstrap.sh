@@ -34,4 +34,4 @@ done
 # Pull git submodules
 (cd $dotdir; git submodule update --init --recursive)
 # Install Vundle plugins
-vim +PluginInstall +qall
+vim +PlugInstall +qall
