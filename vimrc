@@ -77,6 +77,11 @@ nmap <C-N><C-N> :set invnumber<CR>
 " (e.g. before Vundle plugins are installed)
 silent! colorscheme badwolf
 
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+
 " Add a column at 79 chars as a warning when writing long lines
 if exists('+colorcolumn')
 	set colorcolumn=79
