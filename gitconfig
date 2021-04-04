@@ -4,20 +4,45 @@
 [color]
 	ui = true
 [alias]
-	co = checkout
 	br = branch
 	ci = commit
-	st = status
-	unstage = reset HEAD --
+	co = checkout
 	last = log -1 HEAD
+	logfrompull = !sh -c 'git log --pretty=format:\"%Cred%an %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	outgoing = log --oneline origin/master..HEAD
+	prettylog = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	st = status
 	sts = status -s
+	unstage = reset HEAD --
+	up = !sh -c 'git pull --rebase && git log --pretty=format:\"%Cred%an %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
 [core]
 	editor = vim
+	pager = less -FRSX
+	quotePath = false
+	commitGraph = true
+[help]
+	autocorrect = 1
 [push]
 	default = simple
 [transfer]
 	fsckObjects = true
 [receive]
 	fsckObjects = true
+	advertisePushOptions = true
 [fetch]
 	fsckObjects = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+[pull]
+	ff = only
+[gc]
+	writeCommitGraph = true
+[diff]
+	algorithm = patience
+	noprefix = true
+[merge]
+	conflictStyle = diff3
