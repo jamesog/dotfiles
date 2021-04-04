@@ -1,86 +1,81 @@
-PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:~/bin
+__colour_prompt() {
+	local c_red='\[\e[31m\]'
+	local c_green='\[\e[32m\]'
+	local c_lblue='\[\e[1;34m\]'
+	local c_cyan='\[\e[1;36m\]'
+	local c_clear='\[\e[0m\]'
+	local lhs="${VIRTUAL_ENV:+(${c_green}$(basename ${VIRTUAL_ENV})${c_clear}) }${c_cyan}\h${c_clear} ${c_lblue}\W${c_clear}"
+	local rhs
+
+	if [[ $UID == 0 ]]; then
+		rhs="${c_red}"'\\$'"${c_clear}"
+	else
+		rhs="${c_green}"'\\$'"${c_clear}"
+	fi
+	if type __git_ps1 &>/dev/null; then
+		__git_ps1 "$lhs" " $rhs "
+	else
+		PS1="$lhs $rhs "
+	fi
+}
+
+#PROMPT_COMMAND='__colour_prompt "${c_cyan}\h${c_clear} ${c_lblue}\W${c_clear}"'
+PROMPT_COMMAND='__colour_prompt'
+
+#PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11/bin:~/bin
+# Moved /usr/local/bin first to get Homebrew git
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/X11/bin:~/bin
+# Python --user
+PATH=$PATH:~/Library/Python/3.7/bin:~/Library/Python/2.7/bin
+# Postgres
+PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 export PATH
 
-# Ignore leading spaces and duplicate commands in history
-HISTCONTROL=ignoreboth
-HISTSIZE=1000
-HISTFILESIZE=1000
+export SSH_AUTH_SOCK="/usr/local/var/run/yubikey-agent.sock"
 
-unset MAILCHECK
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+#PS1='\h:\W \u\$ '
+# PROMPT_COMMAND='__git_ps1 "\h:\W \u" "\$ "'
+# Make bash check its window size after a process completes
 shopt -s checkwinsize
 
-export EDITOR=vim
-export PAGER=less
-export LESS='-aiM'
+HISTCONTROL=ignoredups
 
-case $(uname) in
-	Darwin)
-		# If on a Mac, load Homebrew completions
-		if [ -f $(brew --prefix)/etc/bash_completion ]; then
-			. $(brew --prefix)/etc/bash_completion
-		fi
-		;;
-	Linux)
-		if [[ -f /etc/bash_completion ]]; then
-			. /etc/bash_completion
-		fi
-		;;
-esac
+# Git prompt stuff
+GIT_PS1_SHOWCOLORHINTS=y
+GIT_PS1_SHOWDIRTYSTATE=y
+GIT_PS1_SHOWSTASHSTATE=y
 
-virtualenv_prompt() {
-  if [[ -n "$VIRTUAL_ENV" ]]; then
-    printf "(\[\e[1;34m\]`basename $VIRTUAL_ENV`\[\e[0m\]) "
-  else
-    printf ""
-  fi
-}
+export MINICOM='-o -w'
 
-ip4to6() {
-	ip4=$(echo $1 | tr . " ")
-	printf "%x %x %x %x" $ip4 | (read o1 o2 o3 o4; echo $o1$o2:$o3$o4)
-}
+#export GOROOT=~/go
+export GOPATH=~/gocode
+PATH=/usr/local/go/bin:$PATH:$GOPATH/bin:~/.cargo/bin
+#PATH=$PATH:$GOPATH/bin
 
-ip6to4() {
-	echo $1 | tr : " " | (
-		read h1 h2
-		printf "%d.%d.%d.%d\n" 0x${h1:0:2} 0x${h1:2:2} 0x${h2:0:2} 0x${h2:2:2}
-	)
-}
-
-# Git prompt
-GIT_PS1_SHOWCOLORHINTS=true
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWSTASHSTATE=true
-source ~/.git-prompt.sh
-PS1='\u@\h:\w'
-[[ -n "$VIRTUAL_ENV" ]] && VIRTUAL_PS1="(`basename \"$VIRTUAL_ENV\"`) "
-PROMPT_COMMAND='__git_ps1 "$(virtualenv_prompt)\u@\h:\W" "\\\$ "'
-
-export WORKON_HOME=~/.virtualenvs
-
-# Go
-GOPATH=$HOME/gocode
-export GOPATH
-PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
-if [ -x /usr/bin/dircolors ]; then
-	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-	alias ls='ls --color=auto'
-fi
-
-alias la='ls -la'
 alias ll='ls -l'
-alias sdr='screen -DR'
-alias sx='screen -x'
-# git
+alias wip='whois -h whois.cymru.com'
+
+WORKON_HOME=~/.virtualenvs
+VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+#source /usr/local/bin/virtualenvwrapper.sh
+
+#export PAGER=/usr/local/bin/vimpager
+export PAGER=less
+export EDITOR=vim
+export LESS='-a -F -i -M -R'
+alias less=$PAGER
+alias zless=$PAGER
 alias gp='git pull'
-alias gb='git branch'
 alias gcb='git checkout -b'
 alias gcm='git checkout master'
-alias grm='git fetch; git rebase origin/master'
+
+# Fuck you, Homebrew
+HOMEBREW_NO_ANALYTICS=1
+
+alias start_godoc='docker run --name godoc -v /Users:/Users -e GOPATH=/Users/jamesog/gocode -p 6060:6060 -d golang:1.7 godoc -v -http=:6060'
+
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+
+#export HOMEBREW_GITHUB_API_TOKEN=3ebe709e17bcfe5e5bc1048cf7503a40934f745e
+#export SSH_AUTH_SOCK=/Users/jamesog/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh

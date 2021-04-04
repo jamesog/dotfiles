@@ -11,8 +11,10 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	sts = status -s
+	appraise = !/Users/jamesog/gocode/bin/git-appraise
 [core]
 	editor = vim
+	pager = less -FRX
 [push]
 	default = simple
 [transfer]
@@ -21,3 +23,9 @@
 	fsckObjects = true
 [fetch]
 	fsckObjects = true
+[merge]
+	conflictStyle = diff3
+[diff]
+	algorithm = patience
+[pull]
+	ff = only
