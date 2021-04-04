@@ -9,6 +9,8 @@ tmux
 tmux.conf
 vimrc
 vim
+zprofile
+zshrc
 "
 
 if [ "$PWD" != "$HOME" ]; then
