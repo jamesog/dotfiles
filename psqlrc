@@ -1,0 +1,9 @@
+\pset pager off
+\pset null '(null)'
+\pset linestyle unicode
+
+\set HISTCONTROL ignoredups
+
+\timing on
+
+\set PROMPT1 '%[%033[1;31m%]%x%[%033[0m%]%/%R%# '

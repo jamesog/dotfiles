@@ -5,6 +5,7 @@ bash_profile
 bashrc
 git-prompt.sh
 gitconfig
+psqlrc
 tmux
 tmux.conf
 vimrc
