@@ -188,7 +188,6 @@ let g:ale_linters = {
 \ 'go': ['gofmt', 'golint', 'govet', 'gopls'],
 \ 'rust': ['rls'],
 \}
-let g:ale_open_list = 1
 " default is --enable-all which is a bit too much
 let g:ale_go_golangci_lint_options = ''
 let g:ale_go_golangci_lint_package = 1
