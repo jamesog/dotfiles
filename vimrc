@@ -59,6 +59,13 @@ set nojoinspaces					" Who wants two spaces after a , ?!
 
 if has("termguicolors")
 	set termguicolors
+	if &term =~# '^screen'
+		" See :h xterm-true-color
+		" Enable true colours always; by default this only happens when TERM=xterm
+		" In tmux this also requires terminal-overrides to set the Tc flag
+		let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+		let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+	endif
 endif
 
 set mouse= 							" Never use the mouse (undoes defaults.vim)
