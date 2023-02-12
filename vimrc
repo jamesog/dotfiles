@@ -26,6 +26,7 @@ Plug 'fatih/vim-go'
 "if has("python")
 "Plug 'davidhalter/jedi-vim'		" Autocompletion, requires python
 "endif
+Plug 'hashivim/vim-terraform'
 Plug 'plasticboy/vim-markdown'
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'rust-lang/rust.vim'
@@ -215,6 +216,9 @@ let g:pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
 
 let g:rustfmt_autosave = 1
+
+let g:terraform_fmt_on_save = 1
+let g:terraform_align = 1
 
 let g:vim_json_syntax_conceal = 0
 
