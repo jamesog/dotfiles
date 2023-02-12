@@ -17,6 +17,8 @@
 	sts = status -s
 	unstage = reset HEAD --
 	up = !sh -c 'git pull --rebase && git log --pretty=format:\"%Cred%an %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+[init]
+	defaultBranch = main
 [core]
 	editor = vim
 	pager = less -FRSX
