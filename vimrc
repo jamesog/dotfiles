@@ -129,7 +129,7 @@ nmap [Q :cfirst<CR>
 " Fugitive (git) shortcuts
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gb :Git blame<CR>
 
 " toggle line numbering and gitgutter
 nmap <C-N><C-N> :set invnumber<CR>:GitGutterToggle<CR>
